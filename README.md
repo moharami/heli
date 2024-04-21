@@ -1,30 +1,107 @@
-# Laravel 11 Sanctum REST API Authentication Tutorial
+# Task Management API
 
-  Build an Laravel 11 REST API Authentication using Sanctum Step by Step example. you have to simply follow the below steps:
-  - Step 1: Install Laravel 11
-  - Step 2: Install Sanctum API
-  - Step 3: Sanctum Configuration
-  - Step 4: Add Product Table and Model
-  - Step 5: Create API Routes
-  - Step 6: Create Controller Files
-  - Run Laravel 11 App
+This API provides endpoints for managing tasks, including CRUD operations and authentication for users.
 
-![laravel-11-rest-api-sanctum-example](https://www.itsolutionstuff.com/upload/laravel-11-sanctum-api.png)
+## Features
 
- Run `php artisan serve` for a dev server. Navigate to `http://localhost:8000/`. The application will automatically reload if you change any of the source files.
+- **Authentication**: Users can authenticate using their credentials.
+- **Task CRUD**: Users can perform CRUD operations on tasks.
+- **Swagger Documentation**: API endpoints are documented using Swagger/OpenAPI.
+- **Feature Tests**: Feature tests are included to ensure API functionality.
 
- Read Article: https://www.itsolutionstuff.com/post/laravel-11-rest-api-authentication-using-sanctum-tutorialexample.html
+## Endpoints
+
+### Authentication
+
+- `POST /api/register`: Register a new user.
+- `POST /api/login`: Authenticate user and generate token.
 
 
-For more examples, please visit:
-> [How to Create and User Trait in Laravel 11?](https://www.itsolutionstuff.com/post/how-to-create-and-use-trait-in-laravel-11example.html)
 
-> [How to Create Custom Middleware in Laravel 11?](https://www.itsolutionstuff.com/post/how-to-create-custom-middleware-in-laravel-11example.html)
+### Task Management
 
-> [How to Publish API Routes in Laravel 11?](https://www.itsolutionstuff.com/post/how-to-publish-api-route-file-in-laravel-11example.html)
+- `GET /api/tasks`: Retrieve all tasks.
+- `POST /api/tasks`: Create a new task.
+- `GET /api/tasks/{taskId}`: Retrieve a task by ID.
+- `PUT /api/tasks/{taskId}`: Update a task by ID.
+- `DELETE /api/tasks/{taskId}`: Delete a task by ID.
 
-> [How to Create Interface in Laravel 11?](https://www.itsolutionstuff.com/post/how-to-create-interface-in-laravel-11example.html)
+## Documentation
 
-> [How to Create Custom Class in Laravel 11?](https://www.itsolutionstuff.com/post/how-to-create-custom-class-in-laravel-11example.html)
+API endpoints are documented using Swagger/OpenAPI. You can access the Swagger documentation by running the application and visiting `/public/swagger` folder.
 
-> [How to Create Interface in Laravel 11?](https://www.itsolutionstuff.com/post/how-to-create-interface-in-laravel-11example.html)
+## Installation
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/moharami/heli
+```
+
+2. Install dependencies:
+
+```bash
+composer install
+```
+
+3. Set up environment variables:
+
+```bash
+cp .env.example .env
+```
+
+4. Generate application key:
+
+```bash
+php artisan key:generate
+```
+
+5. Configure database settings in `.env` file.
+
+6. Run migrations:
+
+```bash
+php artisan migrate
+```
+
+7. Serve the application:
+
+```bash
+php artisan serve
+```
+
+## Running Tests
+
+You can run feature tests using PHPUnit:
+
+```bash
+php artisan test
+```
+
+## Usage
+
+1. Authenticate using `/api/login` endpoint to obtain a token.
+2. Use the token in the Authorization header for accessing protected endpoints.
+
+
+Certainly! Here is the revised section for setting up a cron job in your README:
+
+---
+
+## Automating Task Completion with Cron Job
+
+To automatically mark tasks as complete after they have been active for more than 2 days, you can set up a cron job in your server. Follow the steps below to configure the cron job:
+
+1. **Open Terminal**: Access the terminal or SSH into your server.
+
+2. **Edit Crontab**: Edit the crontab by running:
+
+    ```bash
+    * * * * * cd /path-to-your-project && php artisan schedule:run >> /dev/null 2>&1
+    ```
+
+3. **Testing**: Ensure to test the command locally before deploying it to the production server.
+
+By setting up this cron job, tasks in your application will automatically be marked as complete after exceeding a 2-day period of activity, streamlining your task management process.
+
+
