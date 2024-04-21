@@ -2,7 +2,9 @@
 
 namespace App\Repository\Task;
 
+use App\Enum\StatusEnum;
 use App\Models\Task;
+use Illuminate\Support\Carbon;
 
 class TaskRepository implements TaskRepositoryInterface
 {
@@ -30,6 +32,18 @@ class TaskRepository implements TaskRepositoryInterface
     public function deleteTask($task)
     {
         $task->delete();
+    }
+
+    public function getTasksCreatedBeforeDaysAndNotCompleted($days)
+    {
+        return Task::where('created_at', '<=', Carbon::now()->subDays($days))
+            ->where('status', '!=', StatusEnum::COMPLETED)
+            ->get();
+    }
+
+    public function completeTask(Task $task)
+    {
+        $task->update(['status' => StatusEnum::COMPLETED]);
     }
 
 }

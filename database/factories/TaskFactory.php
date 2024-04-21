@@ -27,4 +27,23 @@ class TaskFactory extends Factory
             'user_id' => $this->faker->randomElement($userIds),
         ];
     }
+
+
+    public function pending()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'status' => StatusEnum::PENDING,
+            ];
+        });
+    }
+
+    public function forUser($user_id)
+    {
+        return $this->state(function (array $attributes)use($user_id) {
+            return [
+                'user_id' => $user_id,
+            ];
+        });
+    }
 }
