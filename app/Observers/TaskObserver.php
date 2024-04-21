@@ -18,7 +18,7 @@ class TaskObserver
 
     public function updated(Task $task)
     {
-        if ($task->isDirty('status') && $task->status == StatusEnum::COMPLETED) {
+        if ($task->isDirty('status')) {
             event(new TaskCompleted($task));
         }
     }
