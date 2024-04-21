@@ -12,7 +12,7 @@ class BaseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function sendResponse($result, $message)
+    public function sendResponse($result, $message, $status = Response::HTTP_OK)
     {
     	$response = [
             'success' => true,
@@ -20,7 +20,7 @@ class BaseController extends Controller
             'message' => $message,
         ];
 
-        return response()->json($response, Response::HTTP_OK);
+        return response()->json($response, $status);
     }
 
     /**
@@ -40,5 +40,17 @@ class BaseController extends Controller
         }
 
         return response()->json($response, $code);
+    }
+
+    /**
+     * Create a new resource.
+     *
+     * @param  mixed  $resource
+     * @param  string $message
+     * @return \Illuminate\Http\Response
+     */
+    public function sendCreated($resource, $message)
+    {
+        return $this->sendResponse($resource, $message, Response::HTTP_CREATED);
     }
 }
